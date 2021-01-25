@@ -1,0 +1,95 @@
+==============================
+= Redes Neurais - PERCEPTRON =
+==============================
+Receita do Perceptron:
+1-Iniciar com um conjunto de dados supervisionados.
+2-Feed Foward (Perceptron faz as predições).
+3-Calcular os erros (loss) e atualizar os pesos.
+Reperir 2 e 3 para cada registro = Perceptron Rule
+
++ Época: número de vezes que o algoritmo processa o dataset (de treinamento) inteiro*
++ Tamanho da batch: número de exemplos de treinamento em um único batch antes do modelo atualizar os pesos*
++ Interações: número de vezes que o algoritmo processa os batch para completar uma época*
+ 
+========= Feed Foward =========
+
++----------+----+----+--------+
++ Registro + X1 + X2 + Target +
++----------+----+----+--------+			X1---|W1|-----+----------+
++ User A   + 1  + 0  +   1    +				      |	    |		 |
++ User B   + 0  + 0  +   0    +					  | sum | step(n)|-----Y(predição)		
++ User C   + 0  + 1  +   1    +					  |	    |	     |
++ User D   + 1  + 1  +   1    +			X2---|W2|-----+----------+
++----------+----+----+--------+			   							Y(predição) = g(w1*x1 + w2*x2) [g -> função degrau]
+
+================= Iniciando o Feed Foward =================
+[Os pesos são inicializados aleatoriamente: W1 = 0 | W2 = 0]
+
+[novo_peso = peso + learning_rate * erro * input]
+ΔWi = n(Yi - Ýi)*Xi
+Wi = Wi + ΔWi
+
+[erro = target - predição]
+e = Y - Ý
+
+===========================================================
+---------------- Época #1 - Amostra #1 --------------------
+Ý = g(1 * 0 + 0 * 0) = 0
+erro = 1 - 0 = 1
+W1 = 0 + 0.5 * 1 * 1 = 0.5
+W2 = 0 + 0.5 * 1 * 0 = 0
+
+---------------- Época #1 - Amostra #2 --------------------
+Ý = g(0 * 0.5 + 0 * 0) = 0
+erro = 0 - 0 = 0
+W1 = 0.5 + 0.5 * 0 * 0 = 0.5
+W2 = 0 + 0.5 * 0 * 0 = 0
+
+---------------- Época #1 - Amostra #3 --------------------
+Ý = g(0 * 0.5 + 0 * 0) = 0
+erro = 1 - 0 = 1
+W1 = 0.5 + 0.5 * 1 * 0 = 0.5
+W2 = 0 + 0.5 * 1 * 1 = 0.5
+
+---------------- Época #1 - Amostra #4 --------------------
+Ý = g(1 * 0.5 + 1 * 0.5) = 1
+erro = 1 - 1 = 0
+W1 = 0.5 + 0.5 * 0 * 1 = 0.5
+W2 = 0.5 + 0.5 * 0 * 1 = 0.5
+===================== FIM da Época #1======================
+
+---------------- Época #2 - Amostra #1 --------------------
+Ý = g(1 * 0.5 + 0 * 0.5) = 1
+erro = 1 - 1 = 0 (sem erro, sem atualização dos pesos)
+
+---------------- Época #2 - Amostra #2 --------------------
+Ý = g(0 * 0.5 + 0 * 0.5) = 0
+erro = 0 - 0 = 0 (sem erro, sem atualização dos pesos)
+
+---------------- Época #2 - Amostra #3 --------------------
+Ý = g(0 * 0.5 + 1 * 0.5) = 1
+erro = 1 - 1 = 0 (sem erro, sem atualização dos pesos)
+
+---------------- Época #2 - Amostra #4 --------------------
+Ý = g(1 * 0.5 + 1 * 0.5) = 1
+erro = 1 - 1 = 0 (sem erro, sem atualização dos pesos)
+
+=========== FIM da Época #1 - Acurácia: 100% ==============
+
++++++++++++++++++++++++++
+++++ 	  BIAS       ++++
++++++++++++++++++++++++++
+- Uma constante que é adicionada ao neurônio.					X1---|W1|-----+--------------+
+- Cada neurônio pode ter bias.												  |				 |
+- Pode ser estático ou aprendido (assim como os pesos).			BIAS----------| sum | step(n)|-----Y(predição)	
+- Ajuda a determinar o limiar (threshold) de disparo.						  |				 |
+- Resulta em mais flexibilidade para o modelo.					X2---|W2|-----+--------------+
+
+																Ý = g(W1 * X1 + W2 * X2 + B)
+LIMITAÇÕES DO PERCEPTRON:
+O modelo Perceptron trabalha com problemas linearmente separáveis.
+
+==========================================
+= Redes Neurais - PERCEPTRON MULTICAMADA =
+==========================================
+
