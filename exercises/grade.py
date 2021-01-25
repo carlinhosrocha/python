@@ -1,0 +1,13 @@
+def grade():
+    print("+ - - - - + - - - - +")
+    print("|         |         |")
+    print("|         |         |")
+    print("|         |         |")
+    print("|         |         |")
+    print("+ - - - - + - - - - +")
+    print("|         |         |")
+    print("|         |         |")
+    print("|         |         |")
+    print("|         |         |")
+    print("+ - - - - + - - - - +")
+grade()
