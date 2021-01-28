@@ -1,2 +1,2 @@
-# python
+# Python
  Codes and algorithms in Python.
